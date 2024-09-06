@@ -1,9 +1,17 @@
-class Estado {
+import 'package:usando_bloc_appcontador/constantes.dart';
+
+sealed class Estado {
   final int numero;
-  Estado({required this.numero});
+  Estado(this.numero);
 }
 
-class stateImagen extends Estado {
-  final String url;
-  stateImagen({required this.url, required super.numero});
+class EstadoImagen extends Estado {
+  final String _url;
+  String get url => _url;
+  EstadoImagen(super.numero, this._url);
+}
+
+class EstadoTexto extends Estado {
+  String get nume => '$numero';
+  EstadoTexto(super.numero);
 }
