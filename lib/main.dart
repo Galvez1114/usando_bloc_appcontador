@@ -28,6 +28,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     var estado = context.watch<MiBloc>().state;
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: const Text(
