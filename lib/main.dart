@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:usando_bloc_appcontador/bloc/bloc.dart';
 import 'package:usando_bloc_appcontador/bloc/evento.dart';
+import 'package:usando_bloc_appcontador/constantes.dart';
 import 'package:usando_bloc_appcontador/informacion.dart';
 
 void main() {
@@ -25,8 +26,37 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var estado = context.watch<MiBloc>().state;
     return MaterialApp(
       home: Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            'App de Contador',
+          ),
+          actions: [
+            SegmentedButton(
+                onSelectionChanged: (tipo) {
+                  context.read<MiBloc>().add(CambioTipoDigitoA(tipo.first));
+                },
+                segments: const [
+                  ButtonSegment(
+                    value: TipoDigito.occidentales,
+                    label: Text('Occidentales'),
+                  ),
+                  ButtonSegment(
+                    value: TipoDigito.romanos,
+                    label: Text('Romanos'),
+                  ),
+                  ButtonSegment(
+                    value: TipoDigito.arabigo,
+                    label: Text('Arabigo'),
+                  ),
+                ],
+                selected: {
+                  estado.tipoDigito
+                })
+          ],
+        ),
         body: const Center(
           child: Informacion(),
         ),

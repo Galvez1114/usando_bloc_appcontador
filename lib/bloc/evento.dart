@@ -1,3 +1,5 @@
+import 'package:usando_bloc_appcontador/constantes.dart';
+
 class Evento {}
 
 class Incrementar extends Evento {
@@ -8,4 +10,10 @@ class Incrementar extends Evento {
 class Decrementar extends Evento {
   final int enCuanto;
   Decrementar({required this.enCuanto});
+}
+
+class CambioTipoDigitoA extends Evento {
+  final TipoDigito tipoDigito;
+
+  CambioTipoDigitoA(this.tipoDigito);
 }

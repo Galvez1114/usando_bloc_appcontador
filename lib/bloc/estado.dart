@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:numerus/numerus.dart';
 import 'package:usando_bloc_appcontador/constantes.dart';
+import 'package:arabic_numbers/arabic_numbers.dart';
 
 sealed class Estado {
   late final int _numero;
@@ -18,7 +20,14 @@ class EstadoImagen extends Estado {
 }
 
 class EstadoTexto extends Estado {
-  String get nume => '$_numero';
+  final arabicNumbers = ArabicNumbers();
+  String get nume {
+    return switch (tipoDigito) {
+      (TipoDigito.occidentales) => '$_numero',
+      (TipoDigito.romanos) => numero.abs().toRomanNumeralString() ?? "0",
+      (TipoDigito.arabigo) => arabicNumbers.convert(numero)
+    };
+  }
 
   double get medidaTexto {
     int absoluto = _numero.abs();
@@ -28,8 +37,9 @@ class EstadoTexto extends Estado {
   }
 
   Color get elColor {
-    if (_numero > intervaloAlerta && _numero < intervaloAlerta.abs())
+    if (_numero > intervaloAlerta && _numero < intervaloAlerta.abs()) {
       return colorAlerta;
+    }
     return colorNormal;
   }
 

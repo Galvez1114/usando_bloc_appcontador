@@ -11,12 +11,12 @@ Map<int, String> numerosPeligrosos = {
   8: "Este numero es peligroso, uuuy meyo",
 };
 
-int medidaMinimaTexto = 10;
-int medidaMaximaTexto = 50;
+int medidaMinimaTexto = 20;
+int medidaMaximaTexto = 90;
 
 Color colorAlerta = Colors.red;
 Color colorNormal = Colors.black;
 
-enum TipoDigito { occidentales, romanos }
+enum TipoDigito { occidentales, romanos, arabigo }
 
 int intervaloAlerta = -5;
