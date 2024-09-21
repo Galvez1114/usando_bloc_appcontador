@@ -17,3 +17,5 @@ class CambioTipoDigitoA extends Evento {
 
   CambioTipoDigitoA(this.tipoDigito);
 }
+
+class YaInicializado extends Evento {}

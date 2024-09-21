@@ -31,8 +31,8 @@ class EstadoTexto extends Estado {
 
   double get medidaTexto {
     int absoluto = _numero.abs();
-    if (absoluto < medidaMinimaTexto) return medidaMinimaTexto as double;
-    if (absoluto > medidaMaximaTexto) return medidaMaximaTexto as double;
+    if (absoluto < medidaMinimaTexto) return medidaMinimaTexto.toDouble();
+    if (absoluto > medidaMaximaTexto) return medidaMaximaTexto.toDouble();
     return absoluto as double;
   }
 

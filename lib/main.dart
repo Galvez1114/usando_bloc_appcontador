@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:usando_bloc_appcontador/bloc/bloc.dart';
 import 'package:usando_bloc_appcontador/bloc/evento.dart';
+import 'package:usando_bloc_appcontador/bloc/opcionesBloc.dart';
 import 'package:usando_bloc_appcontador/constantes.dart';
+import 'package:usando_bloc_appcontador/drawer_opciones.dart';
 import 'package:usando_bloc_appcontador/informacion.dart';
 
 void main() {
@@ -14,8 +16,15 @@ class MiApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => MiBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => OpcionesBloc()..add(YaInicializadoOpciones()),
+        ),
+        BlocProvider(
+          create: (_) => MiBloc()..add(YaInicializado()),
+        ),
+      ],
       child: const MainApp(),
     );
   }
@@ -30,6 +39,14 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        drawer: const Drawer(
+          child: Column(
+            children: [
+              Opciones(),
+              Parametros(),
+            ],
+          ),
+        ),
         appBar: AppBar(
           title: const Text(
             'App de Contador',

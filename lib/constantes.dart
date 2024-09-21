@@ -20,3 +20,8 @@ Color colorNormal = Colors.black;
 enum TipoDigito { occidentales, romanos, arabigo }
 
 int intervaloAlerta = -5;
+
+//Variables almacenadas en disco
+const String numeroInicial = 'numeroinicial';
+const String saveColorNormal = 'numeroNormal';
+const String saveColorAlerta = 'numeroAlerta';
